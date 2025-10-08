@@ -3,17 +3,39 @@ import { Modal, View, Text, TextInput, Button, StyleSheet } from 'react-native';
 
 export default function ModalForm({ visible, onClose, onSubmit }) {
   const [name, setName] = useState('');
+  const [lat, setLat] = useState('');
+  const [lon, setLon] = useState('');
+  const [description, setDescription] = useState('');
+
 
   return (
-    <Modal visible={visible} animationType="slide" transparent>
+    <Modal visible={visible} animationType="fade" transparent>
       <View style={styles.overlay}>
         <View style={styles.container}>
-          <Text style={styles.title}>Enter your name</Text>
+          <Text style={styles.title}>Create new sport event</Text>
           <TextInput
             style={styles.input}
-            placeholder="Your name"
+            placeholder="Name of event"
             value={name}
             onChangeText={setName}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Description"
+            value={description}
+            onChangeText={setDescription}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Latitude"
+            value={lat}
+            onChangeText={setLat}
+          />
+          <TextInput
+            style={styles.input}
+            placeholder="Longitude"
+            value={lon}
+            onChangeText={setLon}
           />
           <View style={styles.buttons}>
             <Button title="Cancel" onPress={onClose} />
@@ -33,7 +55,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(0,0,0,0.4)',
   },
   container: {
-    width: '80%',
+    width: '50%',
     padding: 20,
     backgroundColor: 'white',
     borderRadius: 12,
