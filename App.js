@@ -1,10 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Platform, StyleSheet, View } from 'react-native';
-import MapView from 'react-native-maps';
+import MapView from './components/mymap';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { IconButton, MD3Colors } from 'react-native-paper';
+import ModalForm from './components/form';
 
 export default function App() {
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const handleSubmit = (value) => {
+    console.log('Form submitted with:', value);
+  };
+
   return (
     <View style={styles.container}>
       {Platform.OS === 'web' ? (
@@ -21,9 +29,13 @@ export default function App() {
       <IconButton
         icon = 'plus'
         style = {styles.fab}
-        onPress={()=> console.log("pressed")}
+        onPress={()=> setModalVisible(true)}
       />
-
+      <ModalForm
+        visible={modalVisible}
+        onClose={() => setModalVisible(false)}
+        onSubmit={handleSubmit}
+      />
       
     </View>
   );
@@ -32,6 +44,8 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end'
   },
   map: {
     width: '100%',
@@ -39,8 +53,6 @@ const styles = StyleSheet.create({
   },
   fab: {
     position: 'absolute',
-    bottom: 30,
-    right: 20,
     backgroundColor: MD3Colors.primary40, // optional fallback color
     elevation: 5,
   },

@@ -11,10 +11,12 @@
   },
   "dependencies": {
     "@react-google-maps/api": "^2.20.7",
+    "@teovilla/react-native-web-maps": "^0.9.5",
     "expo": "~54.0.12",
     "expo-status-bar": "~3.0.8",
     "react": "19.1.0",
     "react-dom": "19.1.0",
+    "react-modal": "^3.16.3",
     "react-native": "0.81.4",
     "react-native-maps": "1.20.1",
     "react-native-paper": "^5.14.5",
