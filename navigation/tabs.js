@@ -14,7 +14,17 @@ export default function Tabs() {
             screenOptions={{
                 headerShown: false,
                 tabBarShowLabel: false,
+                tabBarStyle: {
+                    position: 'absolute',
+                    bottom: 16,
+                    left: '30%',
+                    width: '40%',
+                    borderRadius: 16,
+                    height: 50,
+                    backgroundColor: 'white',
+                },
             }}
+            
         >
             <Tab.Screen name="Map" component={MapScreen}
                 options={{
