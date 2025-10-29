@@ -1,6 +1,6 @@
-import { View, Text } from "react-native-web";
+import { View, Text } from "react-native";
 
-export default function settings() {
+export default function Settings() {
     return (
         <View>
             <Text>Settings</Text>
