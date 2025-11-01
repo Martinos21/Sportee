@@ -7,6 +7,16 @@ export default function ModalForm({ visible, onClose, onSubmit }) {
   const [lon, setLon] = useState('');
   const [description, setDescription] = useState('');
 
+  const handleSubmit = event => {
+    console.log('handleSubmit ran');
+    event.preventDefault();
+
+    setName('');
+    setLat('');
+    setLon('');
+    setDescription('');
+
+  };
 
   return (
     <Modal visible={visible} animationType="fade" transparent>
@@ -39,7 +49,7 @@ export default function ModalForm({ visible, onClose, onSubmit }) {
           />
           <View style={styles.buttons}>
             <Button title="Cancel" onPress={onClose} />
-            <Button title="Submit" onPress={() => onSubmit(name)} />
+            <Button title="Submit" onPress={handleSubmit} />
           </View>
         </View>
       </View>
