@@ -1,0 +1,5 @@
+[
+  {"name": "Fotbal", "description": "Fotbalek 10/10", "lon": 50, "lat": 50},
+  {"name": "Basket", "description": "Baskeet 5/5", "lon": 44, "lat": 44},
+  {"name": "Hokej", "description": "Hokej 5/5", "lon": 23, "lat": 23}
+]
