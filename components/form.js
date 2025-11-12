@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Modal, View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Modal, View, Text, TextInput, Button, StyleSheet, Alert } from 'react-native';
+import {useMutation} from "convex/react";
+import { api } from '../convex/api';
 
 export default function ModalForm({ visible, onClose, onSubmit }) {
   const [name, setName] = useState('');
@@ -7,16 +9,38 @@ export default function ModalForm({ visible, onClose, onSubmit }) {
   const [lon, setLon] = useState('');
   const [description, setDescription] = useState('');
 
-  const handleSubmit = event => {
-    console.log('handleSubmit ran');
-    event.preventDefault();
+  const writeItem = useMutation(api.events.create);
 
-    setName('');
-    setLat('');
-    setLon('');
-    setDescription('');
+  const handleSubmit = async () => {
+    console.log("handleSubmit ran");
 
+    if (!name || !description || !lat || !lon) {
+      console.log("Missing fields", "Please fill in all inputs");
+      return;
+    }
+
+    try {
+      await writeItem({
+        name,
+        description,
+        lat: parseFloat(lat),
+        lon: parseFloat(lon),
+      });
+
+      console.log("Success", "Event added to Convex!");
+
+      //setName("");
+      //setLat("");
+      //setLon("");
+      //setDescription("");
+      onClose();
+    } catch (error) {
+      console.error("Convex write failed:", error);
+      console.log("Error", "Failed to save item to Convex");
+    }
   };
+
+  
 
   return (
     <Modal visible={visible} animationType="fade" transparent>
