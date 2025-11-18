@@ -4,6 +4,8 @@ import MapView from '../components/mymap';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
 import { IconButton, MD3Colors } from 'react-native-paper';
 import ModalForm from '../components/form';
+import { useQuery } from 'convex/react';
+import { api } from '../convex/api';
 
 const { height } = Dimensions.get('window');
 
@@ -13,6 +15,17 @@ export default function MapScreen() {
   const handleSubmit = (value) => {
     console.log('Form submitted with:', value);
   };
+
+  /*try {
+    const events = useQuery(api.eventsQuery.listTasks);
+    console.log(events); 
+  }
+  catch{
+
+  }*/
+
+  const events = useQuery(api.eventsQuery.listTasks);
+  console.log(events); 
 
   return (
     <View style={styles.container}>
